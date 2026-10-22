@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev",
+      "isBackground": true,
+      "problemMatcher": [],
+      "label": "npm: dev (Chạy ứng dụng Emart)",
+      "detail": "Khởi động hệ thống Emart trên http://localhost:3000",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "npm",
+      "script": "dev:client",
+      "isBackground": true,
+      "problemMatcher": [],
+      "label": "npm: dev:client (Chạy Vite Client)",
+      "detail": "Khởi động giao diện Vite SPA trên http://localhost:5173"
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "problemMatcher": ["$tsc"],
+      "label": "npm: build",
+      "detail": "Đóng gói ứng dụng cho production"
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emart - Quản Lý Cửa Hàng Tiện Lợi & Quầy Bán Hàng POS</title>
+  <meta name="description" content="Hệ thống Emart StorePOS - Quản lý cửa hàng tiện lợi: Bán hàng tại quầy POS, quản lý hàng hóa, kiểm soát hạn sử dụng date FEFO, quản lý nhân viên và doanh thu." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFA500'><path d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z'/></svg>" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#F8FAFC] text-slate-800 flex flex-col min-h-screen">
+
+  <!-- TOP BAR (Vàng chanh #FFD700) -->
+  <div class="bg-gradient-to-r from-[#FFD700] via-[#FFCC00] to-[#FFD700] text-[#005A2B] text-xs sm:text-sm py-2 px-4 font-bold border-b border-[#E0C9A6]">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+        <span>Emart - Quản lý cửa hàng tiện lợi • Chi nhánh 366 Phan Văn Trị, Q. Gò Vấp</span>
+        <span class="hidden md:inline text-[#005A2B]/40">|</span>
+        <span class="hidden md:flex items-center gap-1">
+          <i data-lucide="store" class="w-3.5 h-3.5"></i>
+          <span>Phục vụ liên tục 24/7</span>
+        </span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="flex items-center gap-1">
+          <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+          <span>Hotline: <strong>1900 6868</strong></span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER -->
+  <header class="bg-white border-b border-[#F5E6D3] sticky top-0 z-50 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <!-- Logo Giỏ hàng cam Emart -->
+      <a href="index.html" class="flex items-center gap-3 select-none">
+        <div class="w-10 h-10 rounded-2xl bg-[#FFA500] text-slate-950 flex items-center justify-center shadow-md">
+          <i data-lucide="shopping-basket" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center text-xl sm:text-2xl font-black tracking-tight text-[#005A2B]">
+            <span>Emart</span>
+            <span class="text-[#FFA500] font-normal mx-1.5 text-lg">•</span>
+            <span class="text-base sm:text-lg font-extrabold text-[#005A2B]">Quản lý cửa hàng tiện lợi</span>
+          </div>
+          <p class="text-[11px] font-semibold text-slate-500 -mt-0.5 hidden sm:block">
+            Hệ thống Bán Lẻ Quầy POS & Quản Trị Chuỗi Tiện Lợi • FEFO Date
+          </p>
+        </div>
+      </a>
+
+      <!-- Navigation & User Section -->
+      <nav class="flex items-center gap-2 sm:gap-4">
+        <a href="index.html" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-[#005A2B] bg-[#FAF6EF] border border-[#E0C9A6]">
+          Trang chủ
+        </a>
+        <a href="pos.html" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-slate-700 hover:text-[#005A2B] hover:bg-slate-100 transition flex items-center gap-1.5">
+          <i data-lucide="store" class="w-4 h-4 text-[#FFA500]"></i>
+          <span class="hidden sm:inline">Quầy</span> POS
+        </a>
+        <a href="dashboard.html" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-slate-700 hover:text-[#005A2B] hover:bg-slate-100 transition flex items-center gap-1.5">
+          <i data-lucide="layout-dashboard" class="w-4 h-4 text-[#005A2B]"></i>
+          <span>Quản trị</span>
+        </a>
+        <div id="header-user-section" class="ml-2">
+          <!-- Rendered via auth.js -->
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION WITH CONVENIENCE STORE BACKGROUND -->
+  <section class="relative text-white py-14 md:py-20 overflow-hidden">
+    <!-- Convenience Store Background Image with Gradient Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=1600&auto=format&fit=crop&q=80" 
+        alt="Cửa hàng tiện lợi Emart" 
+        class="w-full h-full object-cover object-center filter brightness-80 contrast-105"
+      >
+      <!-- Transparent Green Overlay - Tăng độ trong để thấy rõ toàn cảnh cửa hàng -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#003A1B]/65 via-[#005A2B]/40 to-[#001E0D]/60"></div>
+      <div class="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/40 to-transparent"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 space-y-5">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-xs border border-white/20 text-[#FFD700] text-xs font-bold">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>Hệ Thống Quản Lý Bán Lẻ & Quầy Thu Ngân Tiện Lợi 24/7</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight drop-shadow-lg">
+          Giải Pháp Quản Lý <br>
+          <span class="text-[#FFD700] drop-shadow-md">Cửa Hàng Tiện Lợi & Quầy POS</span>
+        </h1>
+        <p class="text-white drop-shadow-md text-sm sm:text-base max-w-2xl leading-relaxed font-medium bg-black/25 backdrop-blur-xs p-3.5 rounded-2xl border border-white/15">
+          Đầy đủ quy trình bán hàng quầy thu ngân tốc độ cao, quản trị kho hàng theo nguyên tắc <strong>FEFO (First Expired, First Out)</strong>, cảnh báo cận date tự động xả hàng và quản lý thành viên CRM.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="pos.html" class="px-6 py-3 rounded-2xl bg-[#FFA500] hover:bg-[#FF9900] text-slate-950 font-black text-sm flex items-center gap-2 shadow-lg transition-transform hover:-translate-y-0.5">
+            <i data-lucide="shopping-basket" class="w-5 h-5"></i>
+            <span>VÀO QUẦY POS BÁN HÀNG</span>
+          </a>
+          <a href="dashboard.html" class="px-6 py-3 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold text-sm flex items-center gap-2 transition">
+            <i data-lucide="layout-dashboard" class="w-5 h-5 text-[#FFD700]"></i>
+            <span>TRANG QUẢN TRỊ TRUNG TÂM</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card -->
+      <div class="lg:col-span-5">
+        <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 shadow-2xl space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-white/10">
+            <span class="text-xs font-bold text-emerald-200">Trạng Thái Hệ Thống</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 font-bold text-xs flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sẵn Sàng 24/7
+            </span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-slate-900">
+            <div class="bg-white p-3.5 rounded-2xl shadow-xs">
+              <p class="text-[11px] font-bold text-slate-500 uppercase">Quầy Thu Ngân</p>
+              <p class="text-xl font-black text-[#005A2B]">POS F1 - F8</p>
+              <p class="text-[10px] text-slate-400 mt-1">Quét mã vạch siêu tốc</p>
+            </div>
+            <div class="bg-white p-3.5 rounded-2xl shadow-xs">
+              <p class="text-[11px] font-bold text-slate-500 uppercase">Quản Trị Kho</p>
+              <p class="text-xl font-black text-[#FFA500]">FEFO Date</p>
+              <p class="text-[10px] text-slate-400 mt-1">Cảnh báo hạn dùng</p>
+            </div>
+          </div>
+          <div class="bg-black/20 p-3 rounded-xl text-xs text-emerald-100 flex items-center gap-2">
+            <i data-lucide="shield-check" class="w-4 h-4 text-[#FFD700]"></i>
+            <span>Hệ thống bảo mật xác thực tài khoản & phân quyền</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="py-12 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-black text-[#005A2B]">Các Chức Năng Cốt Lõi Của Hệ Thống</h2>
+        <p class="text-slate-500 text-sm mt-2">Được xây dựng sát với thực tế vận hành chuỗi cửa hàng tiện lợi hiện đại</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Feature 1 -->
+        <div class="p-6 rounded-2xl bg-[#FAF6EF] border border-[#E0C9A6] hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-xl bg-[#005A2B] text-[#FFD700] flex items-center justify-center mb-4">
+            <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#005A2B] mb-2">Quầy Thu Ngân POS Tốc Độ Cao</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Hỗ trợ tìm kiếm mã vạch barcode, phím tắt nhanh, tính tiền thừa cho khách, thanh toán tiền mặt / Chuyển khoản QR / Ví điện tử và in hóa đơn bán lẻ chuẩn khổ 80mm.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="p-6 rounded-2xl bg-[#FAF6EF] border border-[#E0C9A6] hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-xl bg-[#FFA500] text-slate-950 flex items-center justify-center mb-4">
+            <i data-lucide="calendar" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#005A2B] mb-2">Quản Lý Date FEFO & Xả Hàng</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Kiểm soát hạn sử dụng từng lô thực phẩm (Cơm nắm Omusubi, bánh mì kẹp tươi), phát hiện hàng cận hạn trong 1-3 ngày để kích hoạt xả hàng giảm giá 30% - 50%.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="p-6 rounded-2xl bg-[#FAF6EF] border border-[#E0C9A6] hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-xl bg-[#0B6A36] text-white flex items-center justify-center mb-4">
+            <i data-lucide="users" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#005A2B] mb-2">Tích Điểm CRM & Phân Quyền</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Tra cứu hội viên qua số điện thoại để tích lũy điểm và giảm trừ trực tiếp tiền trên hóa đơn. Phân quyền rõ ràng giữa vai trò Chủ cửa hàng và Nhân viên thu ngân.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SHOWCASE SECTION -->
+  <section class="py-12 bg-[#F8FAFC] flex-1">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 class="text-2xl font-black text-[#005A2B]">Sản Phẩm Tiện Lợi Bán Chạy</h2>
+          <p class="text-slate-500 text-xs sm:text-sm">Hàng hóa đang kinh doanh tại quầy Emart</p>
+        </div>
+        <a href="pos.html" class="text-xs sm:text-sm font-bold text-[#005A2B] hover:text-[#0B6A36] flex items-center gap-1">
+          <span>Mở quầy POS bán ngay</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Product Cards Grid -->
+      <div id="showcase-products-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-lg bg-[#FFA500] text-slate-900 flex items-center justify-center font-black text-[10px]">E</div>
+        <span class="font-bold text-slate-700">Emart Store Management System</span>
+      </div>
+      <p>© 2026 Emart Vietnam. Hệ thống quản trị bán lẻ và quầy thu ngân tiện lợi 24/7.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      updateHeaderUserUI();
+
+      // Render Showcase Products
+      const products = getProducts();
+      const grid = document.getElementById("showcase-products-grid");
+      if (grid) {
+        grid.innerHTML = products.slice(0, 10).map(p => {
+          const daysLeft = getDaysUntilExpiry(p.expiryDate);
+          let fefoBadge = '';
+          if (daysLeft <= 1) {
+            fefoBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-red-100 text-red-700 border border-red-200">Cận date (${daysLeft}d)</span>`;
+          } else if (daysLeft <= 7) {
+            fefoBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-700 border border-amber-200">Hạn ${daysLeft} ngày</span>`;
+          }
+
+          return `
+            <div class="bg-white rounded-2xl border border-slate-200 p-3 flex flex-col justify-between hover:shadow-md transition">
+              <div>
+                <div class="aspect-square w-full rounded-xl bg-slate-100 overflow-hidden mb-2 relative">
+                  <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover">
+                  ${p.price < p.originalPrice ? `<span class="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded bg-red-600 text-white font-black text-[10px]">GIẢM GIÁ</span>` : ''}
+                </div>
+                <div class="flex items-center gap-1 mb-1">
+                  ${fefoBadge}
+                  <span class="text-[10px] text-slate-400 font-mono">#${p.barcode}</span>
+                </div>
+                <h4 class="font-bold text-xs text-slate-800 line-clamp-2" title="${p.name}">${p.name}</h4>
+              </div>
+              <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="font-black text-sm text-[#005A2B]">${formatVND(p.price)}</span>
+                  ${p.price < p.originalPrice ? `<span class="text-[10px] text-slate-400 line-through block">${formatVND(p.originalPrice)}</span>` : ''}
+                </div>
+                <a href="pos.html" class="p-1.5 rounded-lg bg-[#FFA500] hover:bg-[#FF9900] text-slate-900 transition" title="Chọn mua">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>
